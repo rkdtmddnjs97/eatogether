@@ -1,11 +1,18 @@
-import * as React from "react";
+import { useEffect } from "react";
+import KakaoMapScript from "../../components/Map/kakaoMap";
 
 function Home() {
-  return (
-    <div>
-      <h1>Hello Delivery</h1>
-    </div>
-  );
+  useEffect(() => {
+    KakaoMapScript();
+  }, []);
+
+return (
+    <div id='myMap' style={{
+        width: '100vw',
+        height: '100vh'
+    }}></div>
+);
 }
 
 export default Home;
+

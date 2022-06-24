@@ -66,6 +66,7 @@ const menuId = 'primary-search-account-menu';
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Link to = '/login'>
             <IconButton
               size="large"
               edge="end"
@@ -74,12 +75,13 @@ const menuId = 'primary-search-account-menu';
               aria-haspopup="true"
               color="inherit"
               // 프로필 버튼 누르면 login페이지로 이동
-              onClick={() => {
-                window.location.href = '/login';
-                }}
+              // onClick={() => {
+              //   window.location.href = '/login';
+              //   }}
             >
               <AccountCircle />
             </IconButton>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>

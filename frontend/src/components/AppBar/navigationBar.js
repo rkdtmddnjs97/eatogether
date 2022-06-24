@@ -1,35 +1,87 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
 
-export default function navigationBar() {
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: 300,
+    width: 'auto',
+  },
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(30)})`,
+    paddingRight: `calc(1em + ${theme.spacing(10)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '40ch',
+    },
+  },
+}));
+
+export default function PrimarySearchAppBar() {
+
+const menuId = 'primary-search-account-menu';
+  
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor:"orange"}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' },
+                  fontWeight: 700, }}
+            onClick={() => {
+              window.location.href = '/';
+              }}  
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            EATOGETHER
           </Typography>
-          <Button color="inherit">
-            <Link to="/login">Login</Link>
-          </Button>
+          <Search>
+            <StyledInputBase
+              placeholder="주소를 입력해주세요"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+              // 프로필 버튼 누르면 login페이지로 이동
+              onClick={() => {
+                window.location.href = '/login';
+                }}
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }

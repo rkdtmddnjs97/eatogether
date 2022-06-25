@@ -1,38 +1,49 @@
 const { kakao } = window;
 
 export default function KakaoMapScript() {
-    const container = document.getElementById('myMap');    // Áöµµ¸¦ ´ãÀ» ¿µ¿ªÀÇ DOM ·¹ÆÛ·±½º
+    const container = document.getElementById('myMap');    // ì§€ë„ë¥¼ ë‹´ì„ ì˜ì—­ì˜ DOM ë ˆí¼ëŸ°ìŠ¤
     const options = {
-        center: new kakao.maps.LatLng(37.610632352771624, 126.99701001706818), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-        level: 3                                              // ÁöµµÀÇ ·¹º§(È®´ë, Ãà¼Ò Á¤µµ)
+        center: new kakao.maps.LatLng(37.610632352771624, 126.99701001706818), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+        level: 3                                              // ì§€ë„ì˜ ë ˆë²¨(í™•ëŒ€, ì¶•ì†Œ ì •ë„)
     };
     const map = new kakao.maps.Map(container, options);
-    // ¸¶Ä¿ »ı¼º
-    const imageSrc = 'https://cdn-icons-png.flaticon.com/512/7902/7902187.png' // ¸¶Ä¿ÀÌ¹ÌÁö ÁÖ¼Ò   
-    const imageSize = new kakao.maps.Size(54, 59) // ¸¶Ä¿ÀÌ¹ÌÁö Å©±â
-    const imageOption = {offset: new kakao.maps.Point(27, 69)}; // ¸¶Ä¿ÀÇ ÁÂÇ¥¿Í ÀÏÄ¡½ÃÅ³ ÀÌ¹ÌÁö ¾È¿¡¼­ÀÇ ÁÂÇ¥¸¦ ¼³Á¤
-    // ¸¶Ä¿ÀÇ ÀÌ¹ÌÁöÁ¤º¸¸¦ °¡Áö°í ÀÖ´Â ¸¶Ä¿ÀÌ¹ÌÁö¸¦ »ı¼ºÇÕ´Ï´Ù
+    
+    // ë§ˆì»¤ ìƒì„±
+    const imageSrc = 'https://cdn-icons-png.flaticon.com/512/7902/7902187.png' // ë§ˆì»¤ì´ë¯¸ì§€ ì£¼ì†Œ   
+    const imageSize = new kakao.maps.Size(54, 59) // ë§ˆì»¤ì´ë¯¸ì§€ í¬ê¸°
+    const imageOption = {offset: new kakao.maps.Point(27, 69)}; // ë§ˆì»¤ì˜ ì¢Œí‘œì™€ ì¼ì¹˜ì‹œí‚¬ ì´ë¯¸ì§€ ì•ˆì—ì„œì˜ ì¢Œí‘œë¥¼ ì„¤ì •
+    // ë§ˆì»¤ì˜ ì´ë¯¸ì§€ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë§ˆì»¤ì´ë¯¸ì§€ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
     const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
     const markerPosition  = new kakao.maps.LatLng(37.610632352771624, 126.99701001706818);
     const marker = new kakao.maps.Marker({
         position: markerPosition,
         image: markerImage 
     });
-    // Áöµµ¿¡ Ç¥½ÃÇÒ ¿ø »ı¼º(»ç¿ëÀÚÀÇ ÁÖ¼Ò·ÎºÎÅÍ ¹üÀ§)
+    // ì§€ë„ì— í‘œì‹œí•  ì› ìƒì„±(ì‚¬ìš©ìì˜ ì£¼ì†Œë¡œë¶€í„° ë²”ìœ„)
     const circle = new kakao.maps.Circle({
-    center : new kakao.maps.LatLng(37.610632352771624, 126.99701001706818),  // ¿øÀÇ Áß½ÉÁÂÇ¥
-    radius: 150, // ¹ÌÅÍ ´ÜÀ§
-    strokeWeight: 5, // ¼±ÀÇ µÎ²² 
-    strokeColor: '#75B8FA', // ¼±ÀÇ »ö±ò
-    strokeOpacity: 1, // ¼±ÀÇ ºÒÅõ¸íµµ
-    strokeStyle: 'dashed', // ¼±ÀÇ ½ºÅ¸ÀÏ
-    fillColor: '#CFE7FF', // Ã¤¿ì±â »ö±ò
-    fillOpacity: 0.5  // Ã¤¿ì±â ºÒÅõ¸íµµ   
+    center : new kakao.maps.LatLng(37.610632352771624, 126.99701001706818),  // ì›ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+    radius: 150, // ë¯¸í„° ë‹¨ìœ„
+    strokeWeight: 5, // ì„ ì˜ ë‘ê»˜ 
+    strokeColor: '#75B8FA', // ì„ ì˜ ìƒ‰ê¹”
+    strokeOpacity: 1, // ì„ ì˜ ë¶ˆíˆ¬ëª…ë„
+    strokeStyle: 'dashed', // ì„ ì˜ ìŠ¤íƒ€ì¼
+    fillColor: '#CFE7FF', // ì±„ìš°ê¸° ìƒ‰ê¹”
+    fillOpacity: 0.5  // ì±„ìš°ê¸° ë¶ˆíˆ¬ëª…ë„   
 }); 
 
-// Áöµµ¿¡ ¿øÀ» Ç¥½ÃÇÕ´Ï´Ù 
-circle.setMap(map); 
+// ë§ˆì»¤ ìœ„ ì£¼ë¬¸ì •ë³´ í‘œì‹œ
+const iwContent = '<div style=padding:50px;>BBQ<br>18:00</div>',
+      iwPosition = new kakao.maps.LatLng(37.610632352771624, 126.99701001706818);
+const infowindow = new kakao.maps.InfoWindow({
+    position : iwPosition, 
+    content : iwContent 
+});
 
-    marker.setMap(map); 
+// ì§€ë„ì— ì›ì„ í‘œì‹œ
+circle.setMap(map); 
+// ì§€ë„ì— ë§ˆì»¤ í‘œì‹œ
+marker.setMap(map); 
+//ì§€ë„ ìœ„ ë§ˆì»¤ ì£¼ë¬¸ì •ë³´ í‘œì‹œ
+infowindow.open(map, marker);
 
 }

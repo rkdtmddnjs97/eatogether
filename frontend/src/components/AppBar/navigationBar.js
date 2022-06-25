@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
+// react-redirect를 이용한 페이지 이동
+//import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import Login from "../../pages/Login/Login"
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -66,7 +69,7 @@ const menuId = 'primary-search-account-menu';
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Link to = '/login'>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
             <IconButton
               size="large"
               edge="end"
@@ -74,10 +77,6 @@ const menuId = 'primary-search-account-menu';
               aria-controls={menuId}
               aria-haspopup="true"
               color="inherit"
-              // 프로필 버튼 누르면 login페이지로 이동
-              // onClick={() => {
-              //   window.location.href = '/login';
-              //   }}
             >
               <AccountCircle />
             </IconButton>

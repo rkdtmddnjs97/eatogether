@@ -7,6 +7,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Link } from "react-router-dom";
 import ListItem from "../EtcItem/Listitem";
+import PaginationControlled from "../EtcItem/Pagination";
 
 const WrapStyle = {
   width : "300px",
@@ -33,6 +34,7 @@ export default function SideBar() {
       <ListItem />
       <ListItem />
       <ListItem />
+      <PaginationControlled />
 
     </Box>
   );

@@ -77,8 +77,12 @@ function Board({open, setOpen}) {
             <BoardInput label={"총 금액"} />
             <BoardInput label={"전달 사항"} />
             <div style={btnWrapper}>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <UnstyledButtonsSimple label={"등록 완료"} />
+                </Link>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <UnstyledButtonsSimple label={"등록 취소"} />
+                </Link>
             </div>
         </div>
     </Box>

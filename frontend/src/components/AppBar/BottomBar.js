@@ -6,6 +6,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const WrapStyle = {
   width : "50%",
@@ -23,6 +24,7 @@ const BottomNavigationStyle = {
 
 export default function SimpleBottomNavigation({setOpen}) {
   const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
 
   return (
     <Box style={WrapStyle}>
@@ -34,7 +36,7 @@ export default function SimpleBottomNavigation({setOpen}) {
         }}
       >
         <BottomNavigationAction label="새 메뉴 작성" icon={<CreateIcon />} />
-        <BottomNavigationAction onClick={()=>{setOpen(true)}} label="참여하기" icon={<TaskAltIcon />} />
+        <BottomNavigationAction onClick={()=>{navigate("/Board");}} label="참여하기" icon={<TaskAltIcon />} />
         <BottomNavigationAction label="채팅" icon={<ContactsIcon />} />
       </BottomNavigation>
     </Box>

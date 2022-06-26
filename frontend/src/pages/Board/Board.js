@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from '@mui/material/Box';
 import BoardInput from "../../components/EtcItem/BoardInput"
 import UnstyledButtonsSimple from "../../components/EtcItem/BasicButton"
+import { Link } from "react-router-dom";
 
 const headerStyle = {
     marginTop: "60px",

@@ -35,7 +35,7 @@ export default function SimpleBottomNavigation({setOpen}) {
         }}
       >
         <BottomNavigationAction label="새 메뉴 작성" icon={<CreateIcon />} />
-        <BottomNavigationAction onClick={()=>{navigate("/Board");}} label="참여하기" icon={<TaskAltIcon />} />
+        <BottomNavigationAction onClick={()=>{navigate("/board");}} label="참여하기" icon={<TaskAltIcon />} />
         <BottomNavigationAction label="채팅" icon={<ContactsIcon />} />
       </BottomNavigation>
     </Box>

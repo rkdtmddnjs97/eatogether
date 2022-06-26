@@ -8,18 +8,27 @@ const headerStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "200px",
+    height: "150px",
 };
 
 const headerStyle2 = {
-    width: "40%",
+    width: "50%",
     height: "70px",
     fontSize: "20px",
     border: "1px solid black",
-    paddingLeft: "20px",
+    marginLeft: "30px",
     lineHeight: "70px",
     borderRadius: "10px",
-    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+};
+
+const Contents_one = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
 };
 
 const Contents_two = {
@@ -29,19 +38,21 @@ const Contents_two = {
     width: "50%",
     marginTop: "30px",
     marginLeft: "30px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
 };
 
 const headerStyle3 ={
     height: "70px",
     lineHeight: "70px",
-    paddingLeft: "20px",
-    width: "40%",
 };
 
 const btnWrapper ={
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "space-around",
     height: "80px",
 }
 
@@ -55,7 +66,7 @@ function Board({open, setOpen}) {
             <h1>Board Page</h1>
         </div>
     </Box>
-    <Box>
+    <Box style={Contents_one}>
         <div style={headerStyle2}>A님은 BBQ 18:00 황금올리브를 주문했어요!</div>    
 
         <div style={Contents_two}>

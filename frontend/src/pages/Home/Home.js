@@ -16,7 +16,8 @@ return (
     <div id='myMap' style={{
         position: 'absolute',
         width: '100%', 
-        height: '100%' 
+        height: '100%',
+        top: "0px",
     }}></div>
     <SimpleBottomNavigation setOpen={setOpen}/>
     <SideBar />

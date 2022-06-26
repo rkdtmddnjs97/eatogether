@@ -20,6 +20,10 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset=Comment.objects.all()
     serializer_class=CommentSerializer
 
+class JoinOrderViewSet(viewsets.ModelViewSet):
+    queryset=JoinOrder.objects.all()
+    serializer_class= JoinOrderSerializer
+
 
 
 

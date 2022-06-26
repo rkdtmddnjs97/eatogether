@@ -7,20 +7,9 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 //<link rel="stylesheet" href="./Login.css"></link>
 
-/* 로고이미지
-function displayLogoImage(src, width, height) {
-  var a = document.createElement("img");
-    a.src = src;
-    a.width = width;
-    a.height = height;
-    document.body.appendChild(a);
-}
-*/
-
 function Login() {
   return (
     <div>
-    
   <Sheet
     variant="plain"
     sx={{

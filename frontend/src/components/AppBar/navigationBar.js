@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 //import Login from "../../pages/Login/Login"
 
 const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+  position: 'absolute',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
@@ -47,7 +47,7 @@ export default function PrimarySearchAppBar() {
 const menuId = 'primary-search-account-menu';
   
   return (
-      <AppBar position="static" style={{ backgroundColor:"orange"}}>
+      <AppBar position="absolute" style={{ backgroundColor:"orange"}}> 
         <Toolbar>
           <Typography
             variant="h6"

@@ -14,8 +14,9 @@ function Home() {
 return (
   <>
     <div id='myMap' style={{
-        width: '100vw',
-        height: '100vh'
+        position: 'absolute',
+        width: '100%', 
+        height: '100%' 
     }}></div>
     <SimpleBottomNavigation setOpen={setOpen}/>
     <SideBar />

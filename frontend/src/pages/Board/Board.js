@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from '@mui/material/Box';
 import BoardInput from "../../components/EtcItem/BoardInput"
 import UnstyledButtonsSimple from "../../components/EtcItem/BasicButton"
+import { Link } from "react-router-dom";
 
 const headerStyle = {
     marginTop: "60px",
@@ -82,8 +83,12 @@ function Board({open, setOpen}) {
             <BoardInput label={"총 금액"} />
             <BoardInput label={"전달 사항"} />
             <div style={btnWrapper}>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <UnstyledButtonsSimple label={"등록 완료"} />
+                </Link>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <UnstyledButtonsSimple label={"등록 취소"} />
+                </Link>
             </div>
         </div>
     </Box>

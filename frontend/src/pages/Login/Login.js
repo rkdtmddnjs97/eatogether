@@ -7,7 +7,6 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 //<link rel="stylesheet" href="./Login.css"></link>
 
-
 function Login() {
   return (
     <div>
@@ -29,30 +28,30 @@ function Login() {
     <h1>Eatogether는 당신을 기다리고있어요!</h1>
   <TextField
     // html input attribute
-    name="username"
-    type="username"
+    name="userId"
+    type="userId"
     placeholder="eatogether"
-    label="User name"
+    label="아이디"
   />
   <TextField
-    name="password"
-    type="password"
+    name="userPassword"
+    type="userPassword"
     placeholder="password"
-    label="Password"
+    label="비밀번호"
   />
   <Button
     variant="soft"
     color="orange"
     size="lg"
   >
-    login
+    로그인
   </Button>
   <Typography
-    endDecorator={<Link to="/signUp">Sign up</Link>}
+    endDecorator={<Link to="/signUp">가입하기</Link>}
     fontSize="md"
     sx={{ alignSelf: 'center' }}
   >
-    Don't have an account?
+    eatogether가 처음이신가요?
   </Typography>
 </Sheet>
 </div>

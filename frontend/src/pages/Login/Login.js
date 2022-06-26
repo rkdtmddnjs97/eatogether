@@ -10,11 +10,11 @@ import Link from '@mui/joy/Link';
 
 function Login() {
   return (
-    
+    <div>
   <Sheet
     variant="plain"
     sx={{
-      maxWidth: 500,
+      maxWidth: 550,
       mx: 'auto', // margin left & right
       my: 14, // margin top & botom
       py: 4, // padding top & bottom
@@ -26,17 +26,13 @@ function Login() {
       boxShadow: 'lg',
     }}
   >
-    <div>
-    <Typography level="h1" component="h1">
-      <h1>Welcome to Eatogether!</h1>
-    </Typography>
-    </div>
+    <h1>Eatogether는 당신을 기다리고있어요!</h1>
   <TextField
     // html input attribute
-    name="email"
-    type="email"
-    placeholder="eatogether@email.com"
-    label="Email"
+    name="username"
+    type="username"
+    placeholder="eatogether"
+    label="User name"
   />
   <TextField
     name="password"
@@ -59,6 +55,7 @@ function Login() {
     Don't have an account?
   </Typography>
 </Sheet>
+</div>
   );
 }
 

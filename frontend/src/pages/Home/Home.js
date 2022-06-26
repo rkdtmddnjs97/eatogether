@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import KakaoMapScript from "../../components/Map/kakaoMap";
 import SimpleBottomNavigation from "../../components/AppBar/BottomBar";
 import SideBar from "../../components/AppBar/SideBar";
-import JoinModal from "../../components/Modal/JoinModal";
+import Board from "../../pages/Board/Board"
 
 function Home() {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ return (
     }}></div>
     <SimpleBottomNavigation setOpen={setOpen}/>
     <SideBar />
-    <JoinModal open={open} setOpen={setOpen}/>
+    <Board open={open} setOpen={setOpen}/>
   </>
 );
 }

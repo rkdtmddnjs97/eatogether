@@ -19,7 +19,7 @@ export default function KakaoMapScript() {
         image: markerImage 
     });
     // 사용자 자신의 마커 위 주문정보 표시
-    const iwContent = '<div style=padding:50px;>BBQ<br>18:00</div>',
+    const iwContent = '<div style=padding:50px; class="marker">BBQ<br>18:00</div>',
           iwPosition = new kakao.maps.LatLng(37.610632352771624, 126.99701001706818);
     const infowindow = new kakao.maps.InfoWindow({
         position : iwPosition, 
@@ -32,12 +32,12 @@ export default function KakaoMapScript() {
         {
             title: 'user1',
             latlng: new kakao.maps.LatLng(37.61095672774752,  126.99788208622464),
-            content: '<div style=padding:50px;>BBQ<br>18:00</div>',
+            content: '<div style=padding:50px; class="marker">BBQ<br>18:00</div>',
         },
         {
             title: 'user2',
             latlng: new kakao.maps.LatLng(37.61098369877348, 126.99571886793557),
-            content: '<div style=padding:50px;>BBQ<br>18:00</div>',
+            content: '<div style=padding:50px; class="marker">BBQ<br>18:00</div>',
         }
     ];
     const otherImageSrc = "https://cdn-icons-png.flaticon.com/512/7902/7902125.png";
@@ -77,6 +77,28 @@ circle.setMap(map);
 marker.setMap(map); 
 //지도 위 마커 주문정보 표시
 infowindow.open(map, marker);
+
+
+// let markers = document.querySelectorAll('.marker')
+// for(let marker of markers){
+//     marker.value = 'off'
+//     marker.addEventListener('click',(e)=>{
+//         if(e.target.value === 'off'){
+//             e.target.style.border = '5px solid'
+//             let button = document.createElement('button')
+//             button.innerText = "추문취소"
+//             button.style.backgroundColor = "orange"
+//             e.target.appendChild(button)
+//             e.target.value = 'on'
+//         }else{
+//             e.target.style.border = ''
+//             let button = e.target.children
+//             e.target.removeChild(button)
+//             e.target.value = 'off'
+        
+//         }
+//     })
+// }
 
 
 }

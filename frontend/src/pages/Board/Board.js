@@ -57,9 +57,6 @@ const btnWrapper ={
     height: "80px",
 };
 
-const addmenuWrap = {
-    display: "flex",
-}
 
 function Board({open, setOpen}) {
       //const [open, setOpen] = React.useState(true);
@@ -78,8 +75,8 @@ function Board({open, setOpen}) {
             <div style={headerStyle3}>C님이 댓글을 달아서 주문을 진행해주세요!</div>
             <BoardInput label={"주문희망 브랜드"} />
             <BoardInput label={"주문희망 시간"} />
-            <div style={addmenuWrap}><BoardInput label={"주문희망 메뉴"} />
-            <UnstyledButtonsSimple label={"메뉴 추가"} /></div>
+            <BoardInput label={"주문희망 메뉴"} />
+            <UnstyledButtonsSimple label={"메뉴 추가"} />
             <BoardInput label={"총 금액"} />
             <BoardInput label={"전달 사항"} />
             <div style={btnWrapper}>

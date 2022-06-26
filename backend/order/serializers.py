@@ -15,3 +15,8 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Comment
         fields='__all__'
+
+class JoinOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=JoinOrder
+        fields='__all__'

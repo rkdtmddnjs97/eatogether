@@ -5,7 +5,6 @@ from order.models import JoinOrder
 User=get_user_model()
 
 
-
 class Review(models.Model):
     reviewed = models.ForeignKey(JoinOrder, on_delete=models.CASCADE, related_name= 'revieweds' )
     reviewer = models.ForeignKey(JoinOrder, on_delete=models.CASCADE, related_name= 'reviewers' )

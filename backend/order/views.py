@@ -26,4 +26,3 @@ class JoinOrderViewSet(viewsets.ModelViewSet):
 
 
 
-

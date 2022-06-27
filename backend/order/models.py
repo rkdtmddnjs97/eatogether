@@ -11,7 +11,7 @@ class Order(models.Model):
   )
     status=models.CharField(max_length=3, choices=STATUS_CHOICE)
     brand=models.CharField(max_length=100,null=False, blank=False, unique=False)
-    order_time=models.DateTimeField(auto_now_add = True)
+    order_time=models.DateTimeField()
     latitude=models.FloatField()
     longitude=models.FloatField()
     address=models.TextField()

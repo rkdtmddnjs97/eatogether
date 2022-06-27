@@ -46,6 +46,10 @@ class OrderViewSet(viewsets.ModelViewSet):
         near_order_infos = [info for info in order_infos
                             if haversine(position, (info.latitude, info.longitude), unit=Unit.METERS) <= 150]
 
+        serialized_infos = self.get_serializer(near_order_infos, many=True)
+        
+        return Response(serialized_infos.data)
+
 
 
 class MenuViewSet(viewsets.ModelViewSet):

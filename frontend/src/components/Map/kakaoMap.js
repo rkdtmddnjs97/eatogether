@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const { kakao } = window;
 
 export default function KakaoMapScript(
@@ -91,24 +93,39 @@ export default function KakaoMapScript(
 
   map.setCenter(myLocation);
 
-  // let markers = document.querySelectorAll('.marker')
-  // for(let marker of markers){
-  //     marker.value = 'off'
-  //     marker.addEventListener('click',(e)=>{
-  //         if(e.target.value === 'off'){
-  //             e.target.style.border = '5px solid'
-  //             let button = document.createElement('button')
-  //             button.innerText = "추문취소"
-  //             button.style.backgroundColor = "orange"
-  //             e.target.appendChild(button)
-  //             e.target.value = 'on'
-  //         }else{
-  //             e.target.style.border = ''
-  //             let button = e.target.children
-  //             e.target.removeChild(button)
-  //             e.target.value = 'off'
-
-  //         }
-  //     })
-  // }
+  // 주문정보 clickEvent
+  let markers = document.querySelectorAll('.marker')
+  for(let marker of markers){
+      marker.value = 'off'
+      marker.addEventListener('click',(e)=>{
+          if(e.target.value === 'off'){
+              // 주문진행
+              let button1 = document.createElement('button')
+              button1.innerText = "주문진행"
+              button1.style.backgroundColor = "pink"
+              button1.style.color = "white"
+              button1.style.borderColor = "pink"
+              button1.style.width = "100px"
+              button1.style.fontSize = "12px"
+              e.target.appendChild(button1)
+              // 주문취소
+              let button2 = document.createElement('button')
+              button2.innerText = "주문취소"
+              button2.style.backgroundColor = "green"
+              button2.style.color = "white"
+              button2.style.borderColor = "green"
+              button2.style.width = "100px"
+              button2.style.fontSize = "12px"
+              e.target.appendChild(button2)
+              e.target.value = 'on'
+          }
+          else{
+              let button1 = e.target.children
+              let button2 = e.target.children
+              e.target.removeChild(button1)
+              e.target.removeChild(button2)
+              e.target.value = 'off'
+          }
+      })
+  }
 }

@@ -11,5 +11,5 @@ class Review(models.Model):
     reliability = models.IntegerField()
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True) 
-    available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews' )
+    available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews', null=True, blank=True )
 

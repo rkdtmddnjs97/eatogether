@@ -1,5 +1,5 @@
-from crypt import methods
-from turtle import st
+# from crypt import methods
+# from turtle import st
 from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, action

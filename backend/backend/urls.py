@@ -22,5 +22,6 @@ urlpatterns = [
     path('order/',include('order.urls')),
     path('user/',include('user.urls')),
     path('registration/', include('dj_rest_auth.registration.urls')),
+    path('rest-auth/', include('dj_rest_auth.urls')),
     path('', include('dj_rest_auth.urls')),
 ]

@@ -65,7 +65,7 @@ function Board({open, setOpen}) {
     <>
     <Box>
         <div style={headerStyle}>
-            <h1>Board Page</h1>
+            <h1>게시판</h1>
         </div>
     </Box>
     <Box style={Contents_one}>
@@ -73,12 +73,11 @@ function Board({open, setOpen}) {
 
         <div style={Contents_two}>
             <div style={headerStyle3}>C님이 댓글을 달아서 주문을 진행해주세요!</div>
-            <BoardInput label={"주문희망 브랜드"} />
-            <BoardInput label={"주문희망 시간"} />
-            <BoardInput label={"주문희망 메뉴"} />
-            <UnstyledButtonsSimple label={"메뉴 추가"} />
-            <BoardInput label={"총 금액"} />
-            <BoardInput label={"전달 사항"} />
+            <BoardInput label={"주문희망 브랜드"} divShow={"none"}/>
+            <BoardInput label={"주문희망 시간"} divShow={"none"}/>
+            <BoardInput label={"주문희망 메뉴"} divShow={"block"}/>
+            <BoardInput label={"총 금액"} divShow={"none"}/>
+            <BoardInput label={"전달 사항"} divShow={"none"}/>
             <div style={btnWrapper}>
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <UnstyledButtonsSimple label={"등록 완료"} />

@@ -5,9 +5,37 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import *
 from .serializers import *
+from order.models import *
+
 
 from django.core.paginator import Paginator
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset=Review.objects.all()
     serializer_class= ReviewSerializer
+
+    @action(detail=False, methods = ['POST'])
+    def postReview(self,request,pk=None):
+        order = Order.objects.get(id=request.data['order_id'])
+        join_order1=JoinOrder.objects.get(id=request.data['joinorder_id'])
+        join_order2=JoinOrder.objects.get(id=request.data['joinorder_id'])
+        if order.status == 'FIN':
+            new_Review = Review(
+                reviewer = join_order1,
+                reviewed = join_order2,
+                reliability = request.data['reliability'],
+                body = request.data['body'],
+                available=order
+            )
+            new_Review.save()
+            serializer = ReviewSerializer(new_Review)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+            
+            
+    
+
+    

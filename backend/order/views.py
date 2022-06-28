@@ -1,5 +1,5 @@
-from crypt import methods
-from turtle import st
+# from crypt import methods
+# from turtle import st
 from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, action
@@ -53,6 +53,16 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 
+    @action(detail=False, methods = ['GET'])
+    def statusChange(self,request,pk=None):
+        order = Order.objects.get(id=request.data['order_id'])
+        if order.join_orders.filter(money_status='FIN').filter(delivery_status='FIN').exists():
+            order.status='FIN'
+        order.save(update_fields=['status'])
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)
+
+
 class MenuViewSet(viewsets.ModelViewSet):
     queryset=Menu.objects.all()
     serializer_class=MenuSerializer
@@ -80,6 +90,22 @@ class JoinOrderViewSet(viewsets.ModelViewSet):
     queryset=JoinOrder.objects.all()
     serializer_class= JoinOrderSerializer
 
+    #def list(self, request, *args, **kwargs):
+       # queryset = self.filter_queryset(self.get_queryset())
+
+        #page = self.paginate_queryset(queryset)
+        #if page is not None:
+         #   serializer = OrderStatusSerializer(page, many=True)
+          #  return self.get_paginated_response(serializer.data)
+
+       # serializer =OrderStatusSerializer(queryset, many=True)
+       # return Response(serializer.data)
+    
+   
+        
+
+
+        
 
 
 

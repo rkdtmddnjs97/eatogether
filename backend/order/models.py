@@ -5,11 +5,14 @@ User=get_user_model() #장고 프로젝트의 유저 모델 가져오는 함수
 
 
 class Order(models.Model):
-    STATUS_CHOICE=(
-    ('ING', 'Progressing'),
-    ('FIN', 'Finish'),
-  )
-    status=models.CharField(max_length=3, choices=STATUS_CHOICE)
+    STATUS_CHOICE=( 
+    ('COL','Collecting'), #팔로워 받을 때
+    ('MC', 'MoneyCall'),#모든 follower에게 송금 요청
+    ('ING', 'Deliverying'), #배민에서 배달 요청함->배달 중
+    ('DC', 'DeliveryCompleted'), #요청한 장소로 배달 완료됨
+    ('FIN', 'Finish'), #최종 끝난 주문
+  ) #보여줄 필요 없음
+    status=models.CharField(max_length=3, choices=STATUS_CHOICE,default='ING')
     brand=models.CharField(max_length=100,null=False, blank=False, unique=False)
     order_time=models.DateTimeField()
     latitude=models.FloatField()
@@ -19,6 +22,17 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
 
 class JoinOrder(models.Model):
+    MONEY_STATUS=(
+    ('ING', 'Progressing'),
+    ('FIN', 'Finish'),
+  ) #order 상태 MC가 되면 follower들의 money_status 활성화
+    DELIVERY_STATUS=(
+    ('ING', 'Progressing'),
+    ('FIN', 'Finish'),
+  )#order의 status가 DC가 된 이후 follower들의 delivery_status button 활성화
+  # 모든 follower들의 Delivery_status가 fin되면 order의 status finish
+    money_status=models.CharField(max_length=3, choices=MONEY_STATUS,default='ING')
+    delivery_status=models.CharField(max_length=3, choices=DELIVERY_STATUS,default='ING')
     order=models.ForeignKey(Order, on_delete=models.CASCADE,related_name='join_orders')
     description=models.CharField(max_length=128, null=True, blank=True)
     total_cost=models.IntegerField()

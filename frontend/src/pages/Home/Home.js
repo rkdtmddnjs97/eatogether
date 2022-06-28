@@ -10,7 +10,7 @@ function Home() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    KakaoMapScript();
+    getMyLocation();
     getOrderList();
   }, []);
 
@@ -22,6 +22,13 @@ function Home() {
         setOrders(res.data);
       })
       .catch((e) => console.log(e));
+  };
+  const getMyLocation = async () => {
+    await navigator.geolocation.getCurrentPosition((position) => {
+      KakaoMapScript(position.coords.latitude, position.coords.longitude);
+      console.log("우리집?", position.coords.latitude);
+      console.log("우리집?", position.coords.longitude);
+    });
   };
 
   return (

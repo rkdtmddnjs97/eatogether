@@ -31,7 +31,7 @@ export default function SideBar(props) {
     <Box style={WrapStyle}>
       <h1 style={headerStyle}>Order List</h1>
       {props.orders.map((item) => {
-        return <ListItem brand={item.brand} />;
+        return <ListItem key={item.id} brand={item.brand} />;
       })}
       <PaginationControlled />
     </Box>

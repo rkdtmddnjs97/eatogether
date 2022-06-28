@@ -27,6 +27,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         longitude = float(request.GET.get('longitude', None))
         latitude = float(request.GET.get('latitude', None))
 
+        print(request)
         position = (latitude, longitude)
 
         #평방 200m 안에 있는 주문을 필터해줄 수 있는 조건

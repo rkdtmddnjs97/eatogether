@@ -1,11 +1,9 @@
 import * as React from "react";
-import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
-//<link rel="stylesheet" href="./Login.css"></link>
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -47,7 +45,7 @@ function Login() {
     로그인
   </Button>
   <Typography
-    endDecorator={<Link to="/signUp">가입하기</Link>}
+    endDecorator={<Link to="/login/signUp">가입하기</Link>}
     fontSize="md"
     sx={{ alignSelf: 'center' }}
   >

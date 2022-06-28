@@ -5,10 +5,6 @@ import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD
-
-=======
->>>>>>> ffb8fcf6de6180b431d82dc8724b21b9abee3691
 
 function Login() {
   const navigate = useNavigate();

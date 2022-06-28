@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from .models import *
 
+
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model=Order
-        fields='__all__'
+        fields=['id','brand','order_time','latitude','longitude','address','leader']
+
 
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,4 +21,10 @@ class CommentSerializer(serializers.ModelSerializer):
 class JoinOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model=JoinOrder
-        fields='__all__'
+        fields=['id','order','description','total_cost','menu','follower']
+
+#class OrderStatusSerializer(serializers.ModelSerializer):
+ #   class Meta:
+  #      model=Order
+   #     fields=['status']
+

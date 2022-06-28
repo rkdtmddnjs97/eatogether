@@ -18,6 +18,16 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset=Order.objects.all()
     serializer_class=OrderSerializer
 
+    @action(detail=False, methods = ['GET'])
+    def statusChange(self,request,pk=None):
+        order = Order.objects.get(id=request.data['order_id'])
+        if order.join_orders.filter(money_status='FIN').filter(delivery_status='FIN').exists():
+            order.status='FIN'
+        order.save(update_fields=['status'])
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)
+
+
 class MenuViewSet(viewsets.ModelViewSet):
     queryset=Menu.objects.all()
     serializer_class=MenuSerializer
@@ -44,6 +54,23 @@ class CommentViewSet(viewsets.ModelViewSet):
 class JoinOrderViewSet(viewsets.ModelViewSet):
     queryset=JoinOrder.objects.all()
     serializer_class= JoinOrderSerializer
+
+    #def list(self, request, *args, **kwargs):
+       # queryset = self.filter_queryset(self.get_queryset())
+
+        #page = self.paginate_queryset(queryset)
+        #if page is not None:
+         #   serializer = OrderStatusSerializer(page, many=True)
+          #  return self.get_paginated_response(serializer.data)
+
+       # serializer =OrderStatusSerializer(queryset, many=True)
+       # return Response(serializer.data)
+    
+   
+        
+
+
+        
 
 
 

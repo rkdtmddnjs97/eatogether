@@ -10,6 +10,7 @@ class Review(models.Model):
     reviewer = models.ForeignKey(JoinOrder, on_delete=models.CASCADE, related_name= 'reviewers' )
     reliability = models.IntegerField()
     body = models.TextField()
+    available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews',null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add = True) 
-    available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews' )
+    
 

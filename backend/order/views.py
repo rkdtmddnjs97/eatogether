@@ -52,7 +52,6 @@ class OrderViewSet(viewsets.ModelViewSet):
         return Response(serialized_infos.data)
 
 
-
     @action(detail=False, methods = ['GET'])
     def statusChange(self,request,pk=None):
         order = Order.objects.get(id=request.data['order_id'])
@@ -91,6 +90,8 @@ class JoinOrderViewSet(viewsets.ModelViewSet):
     serializer_class= JoinOrderSerializer
 
     
+
+
 
     #def list(self, request, *args, **kwargs):
        # queryset = self.filter_queryset(self.get_queryset())

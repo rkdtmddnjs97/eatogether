@@ -19,7 +19,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         order = Order.objects.get(id=request.data['order_id'])
         join_order1=JoinOrder.objects.get(id=request.data['joinorder_id'])
         join_order2=JoinOrder.objects.get(id=request.data['joinorder_id'])
-        if order.status == 'FIN':
+        if join_order1.id==join_order2.id and order.status == 'FIN':
             new_Review = Review(
                 reviewer = join_order1,
                 reviewed = join_order2,

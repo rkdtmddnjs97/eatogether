@@ -118,12 +118,65 @@ const LabelStyle = {
     width: "140px",
 };
 
-export default function UseFormControl({label}) {
+const LabelStyle2 = {
+  fontSize: "20px",
+  fontWeight: "bold",
+
+};
+
+const InputStyle = {
+  fontSize: "20px",
+  borderRadius: "5px",
+};
+
+const btnStyle = {
+  marginLeft: "10px",
+  backgroundColor: "#787878",
+  padding: "10px 10px",
+  borderRadius: "5px",
+  color: "white",
+}
+
+
+export default function UseFormControl({label, divShow}) {
+  const[open, setOpen] = React.useState("none"); //open: "block", close: "none"
+
+  const Input_click = () => {
+    if(divShow == "block"){
+      setOpen("block");
+    } 
+  };
+
+  const btn_click = (e) => {
+    let MenuItem = document.createElement('p');
+    MenuItem.style.fontSize = "15px";
+
+    let ChildList = e.target.parentElement.children;
+
+    if(ChildList[1].value != '' &&ChildList[1].value != ''){
+    MenuItem.innerHTML =e.target.parentElement.children[1].value+":"+e.target.parentElement.children[2].value+"원";
+    e.target.parentElement.appendChild(MenuItem);
+    }else{
+      Window.alert("메뉴 이름과 가격을 입력해주세요");
+    }
+    //초기화
+    ChildList[1].value = '';
+    ChildList[2].value = '';  
+  };
+
   return (
+    <>
     <FormControlUnstyled style={WrapStyle} defaultValue="" required>
       <Label style={LabelStyle}>{label}</Label>
-      <Input />
+      <Input onClick={Input_click}/>
       <HelperText />
     </FormControlUnstyled>
+    <div style={{display:`${open}`}}>
+      <p style={LabelStyle2}>메뉴 추가</p>
+      <input style={InputStyle} placeholder="메뉴 이름"/>
+      <input style={InputStyle} placeholder="가격"/>
+      <button style={btnStyle} onClick={btn_click}>추가</button>
+    </div>
+    </>
   );
 }

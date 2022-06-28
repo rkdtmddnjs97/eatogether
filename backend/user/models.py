@@ -12,5 +12,7 @@ class Review(models.Model):
     body = models.TextField()
     available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews',null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add = True) 
+
     
+
 

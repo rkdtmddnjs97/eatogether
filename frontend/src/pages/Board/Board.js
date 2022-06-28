@@ -65,7 +65,7 @@ function Board({open, setOpen}) {
     <>
     <Box>
         <div style={headerStyle}>
-            <h1>Board Page</h1>
+            <h1>게시판</h1>
         </div>
     </Box>
     <Box style={Contents_one}>

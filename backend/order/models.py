@@ -10,9 +10,9 @@ class Order(models.Model):
     ('MC', 'MoneyCall'),#모든 follower에게 송금 요청
     ('ING', 'Deliverying'), #배민에서 배달 요청함->배달 중
     ('DC', 'DeliveryCompleted'), #요청한 장소로 배달 완료됨
-    ('FIN', 'Finish'), #최종 끝난 주문
+    ('FIN', 'Finish'), #최종 끝난 주문 
   ) #보여줄 필요 없음
-    status=models.CharField(max_length=3, choices=STATUS_CHOICE,default='ING')
+    status=models.CharField(max_length=3, choices=STATUS_CHOICE,default='COL')
     brand=models.CharField(max_length=100,null=False, blank=False, unique=False)
     order_time=models.DateTimeField()
     latitude=models.FloatField()

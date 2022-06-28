@@ -5,7 +5,7 @@ from .models import *
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model=Order
-        fields=['id','brand','order_time','latitude','longitude','address','leader']
+        fields=['id','brand','order_time','latitude','longitude','address','leader','status']
 
 
 class MenuSerializer(serializers.ModelSerializer):

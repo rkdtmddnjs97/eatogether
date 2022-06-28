@@ -23,7 +23,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
     @action(detail=True, methods=['post'])
-    def set_password(self, request, pk=None):
+    def distanceCount(self, request, pk=None):
         longitude = float(request.GET.get('longitude', None))
         latitude = float(request.GET.get('latitude', None))
 
@@ -88,6 +88,8 @@ class CommentViewSet(viewsets.ModelViewSet):
 class JoinOrderViewSet(viewsets.ModelViewSet):
     queryset=JoinOrder.objects.all()
     serializer_class= JoinOrderSerializer
+
+    
 
     #def list(self, request, *args, **kwargs):
        # queryset = self.filter_queryset(self.get_queryset())

@@ -25,10 +25,20 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
+    def current_location(self):
+        here_req = requests.get("http://www.geoplugin.net/json.gp")
+        if (here_req.status_code != 200):
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        else:
+            location = json.loads(here_req.text)
+            crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
+            return crd
+
     @action(detail=True, methods=['post'])
     def distanceCount(self, request, pk=None):
-        longitude = float(request.GET.get('longitude', None))
-        latitude = float(request.GET.get('latitude', None))
+        dic= OrderViewSet.current_location()
+        longitude=dic['lng']
+        latitude = dic['lat']
 
         print(request)
         position = (latitude, longitude)
@@ -53,25 +63,34 @@ class OrderViewSet(viewsets.ModelViewSet):
         serialized_infos = self.get_serializer(near_order_infos, many=True)
         
         return Response(serialized_infos.data)
-
-    #def current_location():
-     #   here_req = requests.get("http://www.geoplugin.net/json.gp")
-      #  if (here_req.status_code != 200):
-       #     print("현재좌표를 불러올 수 없음")
-    #else:
-     #   location = json.loads(here_req.text)
-      #  crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
-
-    #return crd
     
+    @action(detail=False, methods = ['GET'])
+    def returnlonglat(self,request,pk=None):
+        order = Order.objects.get(id=request.data['order_id'])
+        dic= order.c_l()
+        longitude=dic['lng']
+        latitude = dic['lat']
+        order.save(update_fields=['longitude','latitude'])
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)
 
-    #def addressCount(self, request, pk=None):
-     #   order = Order.objects.get(id=request.data['order_id'])
-      #  address=reverse_geocode.search(order.latitude,order.longitude)
-       # order.save(update_fields=['address'])
-        #serializer = OrderSerializer(order)
+  #  @action(detail=False, methods = ['GET'])
+   # def returnlonglat(self,request,pk=None):
+    #    order = Order.objects.get(id=request.data['order_id'])
+     #   dic= OrderViewSet.current_location()   
+      #  new_longlat = Order(
+       #         status = request.data['status'],
+        #        brand=request.data['brand'],
+         #       order_time=request.data['order_time'],
+          #      latitude=dic['lat'],
+           #     longitude=dic['lng'],
+            #    address=request.data['address'],    
+             #   leader = User.objects.get(id = request.data['user_id']),
+           # )
+      #  new_longlat.save()
+       # serializer = OrderSerializer(new_longlat)
         #return Response(serializer.data)
-
+      
 
     @action(detail=False, methods = ['GET'])
     def statusChange(self,request,pk=None):
@@ -81,7 +100,17 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save(update_fields=['status'])
         serializer = OrderSerializer(order)
         return Response(serializer.data)
+    
+  #  def list(self, request, *args, **kwargs):
+   #     queryset = self.filter_queryset(self.get_queryset())
+#
+ #       page = self.paginate_queryset(queryset)
+  #      if page is not None:
+   #         serializer = OrderStatusSerializer(page, many=True)
+    #        return self.get_paginated_response(serializer.data)
 
+     #   serializer =OrderStatusSerializer(queryset, many=True)
+      #  return Response(serializer.data)
 
 class MenuViewSet(viewsets.ModelViewSet):
     queryset=Menu.objects.all()
@@ -94,7 +123,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods = ['POST'])
     def postComment(self,request,pk=None):
         order = Order.objects.get(id=request.data['order_id'])
-        if order.status == 'ING':
+        if order.status != 'FIN':
             new_comment = Comment(
                 order_user = order,
                 user = User.objects.get(id = request.data['user_id']),

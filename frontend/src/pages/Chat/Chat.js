@@ -42,15 +42,11 @@ const Contents_one = {
     justifyContent: "center",
 };
 
-function Chat({FullWidthTextField}) {
+export default function Chat() {
     const [OrderName, setOrderName] = useState("파파존스")
     const [OrderTime, setOrderTime] = useState("20:00")
     const [OrderMin, setOrderMin] = useState("2빵")
     const [OrderMenu, setOrderMenu] = useState("존스페이보릿")
-
-    const onClick = () => {
-        FullWidthTextField();
-    }
 
     return(
         <>
@@ -67,11 +63,14 @@ function Chat({FullWidthTextField}) {
         <Box>
         <div style={headerStyle3}>
             ㅤㅤㅤㅤ현재 댓글이 없어요. 댓글을 남겨서 주문을 진행해주세요!
+            <div onClick={btnClicked}>
             <UnstyledButtonsSimple label={"댓글달기"} />
+            </div>
         </div>
         </Box>
         </>
     );
 }
 
-export default Chat;
+const btnClicked = () => {
+}

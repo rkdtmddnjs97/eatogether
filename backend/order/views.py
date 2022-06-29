@@ -40,6 +40,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         longitude=dic['lng']
         latitude = dic['lat']
 
+        print(request)
         position = (latitude, longitude)
 
         #평방 200m 안에 있는 주문을 필터해줄 수 있는 조건

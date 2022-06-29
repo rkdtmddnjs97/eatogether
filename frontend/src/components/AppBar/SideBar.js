@@ -8,6 +8,7 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 import { Link } from "react-router-dom";
 import ListItem from "../EtcItem/Listitem";
 import PaginationControlled from "../EtcItem/Pagination";
+import axios from "axios";
 
 const WrapStyle = {
   width: "300px",
@@ -27,11 +28,12 @@ const headerStyle = {
 
 export default function SideBar(props) {
   console.log("??", props.orders);
+
   return (
     <Box style={WrapStyle}>
       <h1 style={headerStyle}>Order List</h1>
       {props.orders.map((item) => {
-        return <ListItem key={item.id} brand={item.brand} />;
+        return <ListItem key={item.id} brand={item.brand} time={item.time}/>;
       })}
       <PaginationControlled />
     </Box>

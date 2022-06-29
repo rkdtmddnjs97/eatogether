@@ -1,5 +1,7 @@
 # from crypt import methods
 # from turtle import st
+import  sys
+#import reverse_geocode
 from django.shortcuts import render,get_object_or_404,redirect
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, action
@@ -9,6 +11,7 @@ from .models import *
 from .serializers import *
 from haversine import haversine, Unit
 from django.db.models import Q
+import json,requests
 
 
 from django.contrib.auth import get_user_model
@@ -37,10 +40,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         )
 
         #모델에서 condition을 만족하는 주문들을 필터링 해온다.
+        order = Order.objects.get(id=request.data['order_id'])
         order_infos = (
-            Order
-            .objects
-            .filter(condition)
+            order.filter(status='FIN').filter(condition)
         )
 
         #나의 현 위치와 각 주문을 비교해서 150m 이내 인 경우만 추가한다.
@@ -51,6 +53,24 @@ class OrderViewSet(viewsets.ModelViewSet):
         serialized_infos = self.get_serializer(near_order_infos, many=True)
         
         return Response(serialized_infos.data)
+
+    #def current_location():
+     #   here_req = requests.get("http://www.geoplugin.net/json.gp")
+      #  if (here_req.status_code != 200):
+       #     print("현재좌표를 불러올 수 없음")
+    #else:
+     #   location = json.loads(here_req.text)
+      #  crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
+
+    #return crd
+    
+
+    #def addressCount(self, request, pk=None):
+     #   order = Order.objects.get(id=request.data['order_id'])
+      #  address=reverse_geocode.search(order.latitude,order.longitude)
+       # order.save(update_fields=['address'])
+        #serializer = OrderSerializer(order)
+        #return Response(serializer.data)
 
 
     @action(detail=False, methods = ['GET'])

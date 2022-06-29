@@ -8,9 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
-// react-redirect를 이용한 페이지 이동
-//import { BrowserRouter, Route, Routes } from "react-router-dom";
-//import Login from "../../pages/Login/Login"
+import Avatar from '@mui/material/Avatar';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -47,8 +45,16 @@ export default function PrimarySearchAppBar() {
 const menuId = 'primary-search-account-menu';
   
   return (
-      <AppBar position="absolute" style={{ backgroundColor:"orange"}}> 
+      <AppBar position="absolute" style={{ backgroundColor:"orange"}}>
         <Toolbar>
+        <IconButton 
+            sx={{ p: 0 }}
+            onClick={() => {
+              window.location.href = '/';
+              }}  
+        >
+            <Avatar alt="logoImage" src="https://o.remove.bg/downloads/ced6007b-0e61-47ea-9373-a940b5f9cc24/image__3_-removebg-preview.png" />
+            </IconButton>
           <Typography
             variant="h6"
             noWrap

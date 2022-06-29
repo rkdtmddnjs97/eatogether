@@ -1,9 +1,9 @@
-import * as React from "react";
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import BoardInput from "../../components/EtcItem/BoardInput"
 import UnstyledButtonsSimple from "../../components/EtcItem/BasicButton"
-import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
 import FullWidthTextField from "../../components/EtcItem/ChatInput";
 
 const headerStyle = {
@@ -47,6 +47,29 @@ export default function Chat() {
     const [OrderTime, setOrderTime] = useState("20:00")
     const [OrderMin, setOrderMin] = useState("2빵")
     const [OrderMenu, setOrderMenu] = useState("존스페이보릿")
+
+    const navigate = useNavigate();
+    const getUser = async() => {
+        await axios
+            .post("http://localhost:8000/rest-auth/token/verify/", {
+                token: sessionStorage.getItem("refresh_token"), // refresh_token 던지기
+            })
+            .then((res) => { // 만약 refresh_token 이 온다면
+                console.log(res);
+            })
+            .catch((err) => { // 만약 refresh_token 외의 것이 온다면 (window.sessionStorage.getItem('아무거나') 또는 )
+                alert("잘못된 접근");
+                navigate("/login");
+            });
+        };
+        useEffect(() => { // 빈리스트면 페이지 한번 로딩되었을 때 딱 한번 지정 
+            if(sessionStorage.getItem("refresh_token")) { // 만약 refresh_token 이 온다면
+                getUser(); // getUser() 메서드 호출
+            } else { // 만약 refresh_token 외의 것이 온다면
+                alert("로그인을 하셔야 해요"); // 알림창 띄우고
+                navigate("/login"); // 로그인 페이지로 이동
+            }
+        }, []);
     
     return(
         <>

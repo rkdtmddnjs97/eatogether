@@ -47,7 +47,7 @@ export default function Chat() {
     const [OrderTime, setOrderTime] = useState("20:00")
     const [OrderMin, setOrderMin] = useState("2빵")
     const [OrderMenu, setOrderMenu] = useState("존스페이보릿")
-
+    
     return(
         <>
         <Box>
@@ -73,4 +73,5 @@ export default function Chat() {
 }
 
 const btnClicked = () => {
+
 }

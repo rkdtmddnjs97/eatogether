@@ -127,6 +127,7 @@ const LabelStyle2 = {
 const InputStyle = {
   fontSize: "20px",
   borderRadius: "5px",
+  marginRight: "10px",
 };
 
 const btnStyle = {

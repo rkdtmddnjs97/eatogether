@@ -53,6 +53,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order_infos = (
             order.filter(status='FIN').filter(condition)
         )
+        
 
         #나의 현 위치와 각 주문을 비교해서 150m 이내 인 경우만 추가한다.
         near_order_infos = [info for info in order_infos
@@ -65,7 +66,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     
     @action(detail=False, methods = ['GET'])
     def returnlonglat(self,request,pk=None):
-        order = Order.objects.get(id=request.data['order_id'])
+        order = Order.objects.get(id=request.GET['order_id'])
         dic= order.c_l()
         longitude=dic['lng']
         latitude = dic['lat']

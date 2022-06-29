@@ -6,6 +6,9 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 from order.models import *
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 from django.core.paginator import Paginator
@@ -39,3 +42,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
     
 
     
+@api_view(['GET'])
+def get_my_info(request):
+    user = User.objects.get(id=request.GET['user_id'])
+    serializer = UserSerializer(user)
+    return Response(serializer.data,status=status.HTTP_200_OK)

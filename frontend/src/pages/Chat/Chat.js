@@ -4,7 +4,6 @@ import BoardInput from "../../components/EtcItem/BoardInput"
 import UnstyledButtonsSimple from "../../components/EtcItem/BasicButton"
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-import FullWidthTextField from "../../components/EtcItem/ChatInput";
 
 const headerStyle = {
     marginTop: "50px",
@@ -26,15 +25,6 @@ const headerStyle2 = {
     justifyContent: "left",
 };
 
-const headerStyle3 = {
-    height: "70px",
-    fontSize: "15px",
-    border: "2px solid black",
-    lineHeight: "70px",
-    display: "flex",
-    justifyContent: "left",
-};
-
 const Contents_one = {
     display: "flex",
     flexDirection: "column",
@@ -47,6 +37,23 @@ export default function Chat() {
     const [OrderTime, setOrderTime] = useState("20:00")
     const [OrderMin, setOrderMin] = useState("2빵")
     const [OrderMenu, setOrderMenu] = useState("존스페이보릿")
+
+    const[Visible, setVisible] = useState("none")
+
+    const btnClicked = () => {
+        setVisible("flex");
+        // document.getElementById("inputWrap").style.display = "flex";
+    }
+
+    const btnClicked2 = () => {
+        setVisible("none");
+        // document.getElementById("inputWrap").style.display = "none";
+        let comment= document.createElement("p");
+        comment.innerText = document.getElementById("inputWrap").children[0].getElementsByTagName("input")[0].value;
+
+        document.getElementById("comment").appendChild(comment);
+    }
+    
     
     return(
         <>
@@ -61,28 +68,21 @@ export default function Chat() {
         </div>
         </Box>
         <Box>
-        <div style={headerStyle3}>
-            ㅤㅤㅤㅤ현재 댓글이 없어요. 댓글을 남겨서 주문을 진행해주세요!
-            <div onClick={btnClicked}>
-            <UnstyledButtonsSimple label={"댓글달기"} />
+        <p>현재 댓글이 없어요. 댓글을 남겨서 주문을 진행해주세요!</p>
+        <div>
+            <div>
+                <button type="button" onClick={btnClicked}>댓글</button>
+            </div>
+            <div id = "inputWrap" style={{display: `${Visible}`}}>
+                <BoardInput label={"댓글"}/>
+                <button type="button" onClick={btnClicked2}>입력</button>
             </div>
         </div>
         </Box>
-        <div class='comment'>
+        <div id="comment">
+
         </div>
         </>
     );
 }
 
-const btnClicked = () => {
-    let comments = document.querySelectorAll('.comment');
-    for(let comment of comments){
-        let button1 = document.createElement('input')
-        button1.style.backgroundColor = "pink"
-        button1.style.color = "white"
-        button1.style.borderColor = "pink"
-        button1.style.width = "100px"
-        button1.style.fontSize = "12px"
-        comment.appendChild(button1)
-    }
-}

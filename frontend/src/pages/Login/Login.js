@@ -22,7 +22,7 @@ function Login() {
   const authLogin = async() => {
     await axios
     .post("http://localhost:8000/rest-auth/login/", {
-      usernmae: form.username,
+      username: form.username,
       email: form.email,
       password: form.password,
     })

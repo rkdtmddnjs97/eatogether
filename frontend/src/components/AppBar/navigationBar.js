@@ -5,50 +5,38 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
-// react-redirect를 이용한 페이지 이동
-//import { BrowserRouter, Route, Routes } from "react-router-dom";
-//import Login from "../../pages/Login/Login"
+import Avatar from '@mui/material/Avatar';
+import getPosition from './Position';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: 300,
-    width: 'auto',
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(30)})`,
-    paddingRight: `calc(1em + ${theme.spacing(10)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '40ch',
-    },
-  },
-}));
+const addressStyle = {
+  marginTop: "0px",
+  marginLeft:"300px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "35px",
+  width: "500px",
+  borderRadius: "10px",
+  backgroundColor: "rgb(255, 181, 98)"
+};
 
 export default function PrimarySearchAppBar() {
 
 const menuId = 'primary-search-account-menu';
   
   return (
-      <AppBar position="absolute" style={{ backgroundColor:"orange"}}> 
+      <AppBar position="absolute" style={{ backgroundColor:"orange"}}>
         <Toolbar>
+        <IconButton 
+            sx={{ p: 0 }}
+            onClick={() => {
+              window.location.href = '/';
+              }}  
+        >
+            <Avatar alt="logoImage" src="https://o.remove.bg/downloads/ced6007b-0e61-47ea-9373-a940b5f9cc24/image__3_-removebg-preview.png" />
+            </IconButton>
           <Typography
             variant="h6"
             noWrap
@@ -61,12 +49,12 @@ const menuId = 'primary-search-account-menu';
           >
             EATOGETHER
           </Typography>
-          <Search>
-            <StyledInputBase
-              placeholder="주소를 입력해주세요"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+          <Box>
+            <div style={addressStyle}>
+              {/* <h4>주소</h4> */}
+              <h4>{getPosition.latitude}</h4>
+            </div>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">

@@ -1,10 +1,19 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+import requests,json
 
 User=get_user_model() #장고 프로젝트의 유저 모델 가져오는 함수
 
 
 class Order(models.Model):
+
+    def c_l(self):
+        here_req = requests.get("http://www.geoplugin.net/json.gp")
+        location = json.loads(here_req.text)
+        crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
+        return crd
+
+
     STATUS_CHOICE=( 
     ('COL','Collecting'), #팔로워 받을 때
     ('MC', 'MoneyCall'),#모든 follower에게 송금 요청

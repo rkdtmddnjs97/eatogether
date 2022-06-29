@@ -34,13 +34,14 @@ const IconStyle = {
 };
 
 export default function ListItem(props) {
+  
   return (
     <Box style={WrapStyle}>
       <div style={IconBoxStyle}>
         <div style={IconStyle}></div>
       </div>
       <p style={{ lineHeight: "26px" }}>
-        {props.brand} 18:00가 기다리는 중이에요
+        {props.brand} {props.time}가 기다리는 중이에요
       </p>
     </Box>
   );

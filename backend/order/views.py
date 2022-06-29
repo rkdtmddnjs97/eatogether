@@ -36,9 +36,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def distanceCount(self, request, pk=None):
-        dic= OrderViewSet.current_location()
-        longitude=dic['lng']
-        latitude = dic['lat']
+        longitude = request.data['lon']
+        latitude = request.data['lat']
 
         print(request)
         position = (latitude, longitude)

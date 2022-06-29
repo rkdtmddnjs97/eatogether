@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import BoardInput from "../../components/EtcItem/BoardInput"
 import UnstyledButtonsSimple from "../../components/EtcItem/BasicButton"
 import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 
 const headerStyle = {
     marginTop: "50px",
@@ -40,7 +41,7 @@ const Contents_one = {
     justifyContent: "center",
 };
 
-function Chat() {
+export default function Chat() {
     return(
         <>
         <Box>
@@ -56,11 +57,15 @@ function Chat() {
         <Box>
         <div style={headerStyle3}>
             ㅤㅤㅤㅤ현재 댓글이 없어요. 댓글을 남겨서 주문을 진행해주세요!ㅤㅤㅤ
+            <div onClick={btnClicked}>
             <UnstyledButtonsSimple label={"댓글달기"} />
+            </div>
         </div>
         </Box>
         </>
     );
 }
 
-export default Chat;
+const btnClicked = () => {
+
+}

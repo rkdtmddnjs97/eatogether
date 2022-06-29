@@ -62,10 +62,21 @@ export default function Chat() {
             </div>
         </div>
         </Box>
+        <div class='comment'>
+        </div>
         </>
     );
 }
 
 const btnClicked = () => {
-
+    let comments = document.querySelectorAll('.comment');
+    for(let comment of comments){
+        let button1 = document.createElement('input')
+        button1.style.backgroundColor = "pink"
+        button1.style.color = "white"
+        button1.style.borderColor = "pink"
+        button1.style.width = "100px"
+        button1.style.fontSize = "12px"
+        comment.appendChild(button1)
+    }
 }

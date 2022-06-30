@@ -44,7 +44,7 @@ function SignUp() {
         sessionStorage.setItem("access_token", res.data["access_token"]);
         sessionStorage.setItem("refresh_token", res.data["refresh_token"]);
         alert("회원가입에 성공했어요!😊");
-        navigate("/login"); // 로그인으로 보내기
+        navigate("/"); // 로그인으로 보내기
       })
       .catch((e) => {
         console.log(e.response.data.email);

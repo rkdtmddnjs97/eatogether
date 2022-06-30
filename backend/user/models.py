@@ -13,5 +13,10 @@ class Review(models.Model):
     available=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'reviews',null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add = True) 
 
+class Mypage(models.Model):
+    name=models.TextField(default="User")
+    profile= models.ImageField(default='media/image.png')
+    review=models.ForeignKey(Review, on_delete=models.CASCADE, related_name= 'reviews',null=True, blank=True)
+    order_list=models.ForeignKey(Order, on_delete=models.CASCADE, related_name= 'order_lists',null=True, blank=True)
     
 

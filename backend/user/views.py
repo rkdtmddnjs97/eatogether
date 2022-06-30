@@ -36,7 +36,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
-
             
             
     
@@ -47,3 +46,7 @@ def get_my_info(request):
     user = User.objects.get(id=request.GET['user_id'])
     serializer = UserSerializer(user)
     return Response(serializer.data,status=status.HTTP_200_OK)
+
+class MypageViewSet(viewsets.ModelViewSet):
+    queryset=Mypage.objects.all()
+    serializer_class=MypageSerializer

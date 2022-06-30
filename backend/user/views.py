@@ -33,6 +33,23 @@ class ReviewViewSet(viewsets.ModelViewSet):
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
+    
+class MypageViewSet(viewsets.ModelViewSet):
+    queryset=Mypage.objects.all()
+    serializer_class=MypageSerializer
+
+
+    #def list(self, request, *args, **kwargs):
+     #   queryset = self.filter_queryset(self.get_queryset())
+#
+ #       page = self.paginate_queryset(queryset)
+  #      if page is not None:
+   #         serializer = OrderlistSerializer(page, many=True)
+    #        return self.get_paginated_response(serializer.data)
+
+     #   serializer =OrderlistSerializer(queryset, many=True)
+      #  return Response(serializer.data)
+
 
             
             

@@ -3,9 +3,10 @@ from .models import *
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source = 'leader.username')
     class Meta:
         model=Order
-        fields=['id','brand','order_time','latitude','longitude','address','leader','status']
+        fields=['id','brand','order_time','latitude','longitude','address','leader','status','username']
 
 
 class MenuSerializer(serializers.ModelSerializer):

@@ -6,5 +6,6 @@ router=DefaultRouter()
 router.register('review',ReviewViewSet)
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('get_my_info/',get_my_info)
 ]

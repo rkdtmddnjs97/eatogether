@@ -34,31 +34,34 @@ class OrderViewSet(viewsets.ModelViewSet):
             crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
             return crd
 
-    @action(detail=True, methods=['post'])
+    @action(detail=False, methods=['post'])
     def distanceCount(self, request, pk=None):
-        longitude = request.data['lon']
-        latitude = request.data['lat']
-
-        print(request)
+        print(request.data)
+        longitude = float(request.data['lon'])
+        latitude = float(request.data['lat'])
         position = (latitude, longitude)
 
         #평방 200m 안에 있는 주문을 필터해줄 수 있는 조건
         condition = (
-            Q(latitude__range=(latitude - 0.002, latitude + 0.002)) |
-            Q(longitude__range=(longitude - 0.003, longitude + 0.003))
+                Q(latitude__range  = (latitude - 0.01, latitude + 0.01)) |
+                Q(longitude__range = (longitude - 0.015, longitude + 0.015))
         )
 
         #모델에서 condition을 만족하는 주문들을 필터링 해온다.
+<<<<<<< HEAD
         order = Order.objects.get(id=request.data['order_id'])
         order_infos = (
             order.filter(status='FIN').filter(condition)
         )
         
+=======
+        order_infos = Order.objects.exclude(status='FIN').filter(condition)
+>>>>>>> 0968deebbd77aa6e04d43037bb69cf500fac3a3c
 
         #나의 현 위치와 각 주문을 비교해서 150m 이내 인 경우만 추가한다.
         near_order_infos = [info for info in order_infos
-                            if haversine(position, (info.latitude, info.longitude), unit=Unit.METERS) <= 150]
-
+                            if haversine(position, (info.latitude, info.longitude), unit=Unit.METERS) <= 1000]
+        
         #many=True인자로 리스트를 serialize한다.
         serialized_infos = self.get_serializer(near_order_infos, many=True)
         

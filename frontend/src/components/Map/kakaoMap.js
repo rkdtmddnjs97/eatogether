@@ -33,7 +33,7 @@ function KakaoMapScript(
 
   // 사용자 자신의 마커 위 주문정보 표시
   const iwContent =
-    '<div style=padding:50px; class="marker">BBQ<br>18:00</div>';
+    '<div style=padding:20px; class="marker">BBQ<br>18:00</div>';
   const infowindow = new kakao.maps.InfoWindow({
     position: myLocation,
     content: iwContent,
@@ -70,7 +70,7 @@ function OrderMarker(orders, map, setOrderId) {
     return {
       title: items.username,
       latlng: new kakao.maps.LatLng(items.latitude, items.longitude),
-      content: `<div style=padding:50px; class="marker" id =${items.id}>${items.brand}<br>${items.order_time}</div>`,
+      content: `<div style=padding:20px; class="marker" id =${items.id}>${items.brand}<br>${items.order_time}</div>`,
     };
   });
 

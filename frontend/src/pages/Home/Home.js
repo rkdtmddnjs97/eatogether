@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import KakaoMapScript from "../../components/Map/kakaoMap";
+import { KakaoMapScript, OrderMarker } from "../../components/Map/kakaoMap";
 import SimpleBottomNavigation from "../../components/AppBar/BottomBar";
 import SideBar from "../../components/AppBar/SideBar";
 import Board from "../../pages/Board/Board";

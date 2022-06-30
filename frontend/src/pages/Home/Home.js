@@ -1,33 +1,40 @@
 import { useEffect, useState } from "react";
-import KakaoMapScript from "../../components/Map/kakaoMap";
+import { KakaoMapScript, OrderMarker } from "../../components/Map/kakaoMap";
 import SimpleBottomNavigation from "../../components/AppBar/BottomBar";
 import SideBar from "../../components/AppBar/SideBar";
 import Board from "../../pages/Board/Board";
-import axios from "axios";
+import orderAPI from "../../api/orderAPI";
 
 function Home() {
   const [open, setOpen] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [orderId, setOrderId] = useState();
 
   useEffect(() => {
     getMyLocation();
-    getOrderList();
   }, []);
 
-  const getOrderList = async () => {
-    await axios
-      .get("http://localhost:8000/order/order/")
+  const getOrderList = async (lat, lon, map) => {
+    await orderAPI
+      .getOrders({
+        lon: lon,
+        lat: lat,
+      })
+
       .then((res) => {
-        console.log("order_list", res.data);
         setOrders(res.data);
+        OrderMarker(res.data, map, setOrderId);
       })
       .catch((e) => console.log(e));
   };
+
   const getMyLocation = async () => {
     await navigator.geolocation.getCurrentPosition((position) => {
-      KakaoMapScript(position.coords.latitude, position.coords.longitude);
-      console.log("우리집?", position.coords.latitude);
-      console.log("우리집?", position.coords.longitude);
+      const map = KakaoMapScript(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      getOrderList(position.coords.latitude, position.coords.longitude, map);
     });
   };
 
@@ -41,11 +48,12 @@ function Home() {
           height: "100%",
         }}
       ></div>
-      <SimpleBottomNavigation setOpen={setOpen} />
+
+    <SimpleBottomNavigation setOpen={setOpen} orderId={orderId} />
       <SideBar orders={orders} />
       <Board open={open} setOpen={setOpen} />
     </>
+
   );
 }
-
 export default Home;

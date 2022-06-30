@@ -1,26 +1,45 @@
-import { useState } from "react";
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
-import Button from '@mui/joy/Button';
+import { useState, useEffect } from "react";
+import Sheet from "@mui/joy/Sheet";
+import Typography from "@mui/joy/Typography";
+import TextField from "@mui/joy/TextField";
+import Button from "@mui/joy/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getListSubheaderUtilityClass } from "@mui/material";
+import authApi from "../../api/authApi";
 
 function Login() {
+  useEffect(() => {
+    getUser();
+  }, []);
+  const getUser = async () => {
+    await authApi
+      .tokenVerify({
+        token: sessionStorage.getItem("refresh_token"), // refresh_token 던지기
+      })
+      .then((res) => {
+        // 만약 refresh_token 이 온다면
+        alert("이미 로그인된 상태입니다");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
   const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     email: "",
     password: "",
-  }); 
+  });
+
   const handlingForm = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-  
-  console.log("form", form);
-  const authLogin = async() => {
+
+  const authLogin = async () => {
     await axios
+
     .post("http://localhost:8000/rest-auth/login/", {
       username: form.username,
       email: form.email,
@@ -44,15 +63,15 @@ function Login() {
         variant="plain"
         sx={{
           maxWidth: 550,
-          mx: 'auto', // margin left & right
+          mx: "auto", // margin left & right
           my: 14, // margin top & botom
           py: 4, // padding top & bottom
           px: 5, // padding left & right
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 5,
-          borderRadius: 'lg', 
-          boxShadow: 'lg',
+          borderRadius: "lg",
+          boxShadow: "lg",
         }}
       >
         <h1>Eatogether는 당신을 기다리고있어요!</h1>
@@ -75,7 +94,7 @@ function Login() {
         />
         <TextField
           name="password"
-          type="userPassword"
+          type="password"
           placeholder="password"
           label="비밀번호"
           value={form.password}
@@ -87,8 +106,10 @@ function Login() {
         <Typography
           endDecorator={<Link to="/login/signUp">가입하기</Link>}
           fontSize="md"
-          sx={{ alignSelf: 'center' }}
-        >
+
+          sx={{ alignSelf: "center" }}
+          >
+
         eatogether가 처음이신가요?
         </Typography>
       </Sheet>
@@ -97,6 +118,3 @@ function Login() {
 }
 
 export default Login;
-
-
-

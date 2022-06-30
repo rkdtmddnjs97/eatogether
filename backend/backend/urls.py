@@ -1,6 +1,5 @@
 
 """backend URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
 Examples:
@@ -23,4 +22,5 @@ urlpatterns = [
     path('user/',include('user.urls')),
     path('registration/', include('dj_rest_auth.registration.urls')),
     path('rest-auth/', include('dj_rest_auth.urls')),
-]
+    path('', include('dj_rest_auth.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
